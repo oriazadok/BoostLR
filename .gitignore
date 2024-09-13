@@ -1,0 +1,8 @@
+# Ignore the entire Weka directory
+src/weka/
+
+
+datasets/
+lib/
+
+src/__pycache*
