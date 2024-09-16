@@ -119,45 +119,49 @@ if __name__ == "__main__":
     # Load the dataset and get attribute information
     df, attribute_info = load_xarff(dataset)
 
-    # Split the data into training and test sets using Pandas
-    train_data, test_data = train_test_split(df, test_size=0.1, random_state=42)
+    total_accuracy = 0
+    splits = [0.1, 0.2, 0.3, 0.4, 0.5]
+    for split in splits:
 
-    # Save the split datasets to XARFF files with the original attribute info
-    save_to_xarff(train_data, train_dataset, relation_name=train_base_name, attribute_info=attribute_info)
-    save_to_xarff(test_data, test_dataset, relation_name=test_base_name, attribute_info=attribute_info)
+        # Split the data into training and test sets using Pandas
+        train_data, test_data = train_test_split(df, test_size=split, random_state=42)
 
-    print("Training and test datasets saved to XARFF files.")
+        # Save the split datasets to XARFF files with the original attribute info
+        save_to_xarff(train_data, train_dataset, relation_name=train_base_name, attribute_info=attribute_info)
+        save_to_xarff(test_data, test_dataset, relation_name=test_base_name, attribute_info=attribute_info)
 
-    # Load dataset as Instances
-    train_data = load_dataset_as_Instances(train_dataset)
-    test_data = load_dataset_as_Instances(test_dataset)
+        print("Training and test datasets saved to XARFF files.")
 
+        # Load dataset as Instances
+        train_data = load_dataset_as_Instances(train_dataset)
+        test_data = load_dataset_as_Instances(test_dataset)
 
-    # run_lrt(train_data, test_data)
+        # run_lrt(train_data, test_data)
 
-    # Initialize the BoostingLR wrapper
-    model = BoostingLRWrapper(max_iterations=50)
+        # Initialize the BoostingLR wrapper
+        model = BoostingLRWrapper(max_iterations=50)
 
-    # Train the model on the training dataset
-    model.fit(train_data)
+        # Train the model on the training dataset
+        model.fit(train_data)
 
-    # Predict on the test dataset
-    predictions = model.predict(test_data)
+        # Predict on the test dataset
+        predictions = model.predict(test_data)
 
-    # Evaluate predictions
-    total_kt = 0.0
-    for i in range(test_data.numInstances()):
-        instance = test_data.instance(i)
-        prefs = model.boosting_lr.preferences(instance)
-        preds = predictions[i]
+        # Evaluate predictions
+        total_kt = 0.0
+        for i in range(test_data.numInstances()):
+            instance = test_data.instance(i)
+            prefs = model.boosting_lr.preferences(instance)
+            preds = predictions[i]
 
-        # print(prefs)
+            total_kt += kendalls_tau(preds, prefs)
 
-        total_kt += kendalls_tau(preds, prefs)
+        # Calculate and print the average Kendall's Tau
+        accuracy = total_kt / test_data.numInstances()
+        print(f"Test Accuracy (Average Kendall's Tau): {accuracy * 100:.2f}%")
+        total_accuracy += accuracy
 
-    # Calculate and print the average Kendall's Tau
-    accuracy = total_kt / test_data.numInstances()
-    print(f"Test Accuracy (Average Kendall's Tau): {accuracy * 100:.2f}%")
+    print(f"total avg:  {(total_accuracy / len(splits)) * 100:.2f}%")
 
     # Shutdown the JVM
     stop_jvm()

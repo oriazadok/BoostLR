@@ -1,3 +1,0 @@
-# train_data, test_data = train_test_split(df, test_size=0.1, random_state=42)
-# Test Accuracy (Average Kendall's Tau): 26.44%
-

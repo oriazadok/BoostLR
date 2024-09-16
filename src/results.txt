@@ -1,0 +1,151 @@
+splits = [0.1, 0.2, 0.3, 0.4, 0.5]
+
+oriaz@oriaz-Lenovo-V14-IIL:~/Desktop/researc_algo/code/src$ python3 main.py 
+Training and test datasets saved to XARFF files.
+Trying to add database driver (JDBC): RmiJdbc.RJDriver - Warning, not in CLASSPATH?
+Trying to add database driver (JDBC): jdbc.idbDriver - Warning, not in CLASSPATH?
+Trying to add database driver (JDBC): org.gjt.mm.mysql.Driver - Warning, not in CLASSPATH?
+Trying to add database driver (JDBC): com.mckoi.JDBCDriver - Warning, not in CLASSPATH?
+Trying to add database driver (JDBC): org.hsqldb.jdbcDriver - Warning, not in CLASSPATH?
+##################################################
+Test Accuracy (Average Kendall's Tau): 26.44%
+Training and test datasets saved to XARFF files.
+##################################################
+Test Accuracy (Average Kendall's Tau): 24.84%
+Training and test datasets saved to XARFF files.
+##################################################
+Test Accuracy (Average Kendall's Tau): 24.25%
+Training and test datasets saved to XARFF files.
+##################################################
+Test Accuracy (Average Kendall's Tau): 25.44%
+Training and test datasets saved to XARFF files.
+##################################################
+Test Accuracy (Average Kendall's Tau): 26.68%
+total avg:  25.53%
+oriaz@oriaz-Lenovo-V14-IIL:~/Desktop/researc_algo/code/src$ 
+
+
+
+
+///////////////////////////////////////////////////////////////////////////
+
+
+
+
+kf = KFold(n_splits=10, shuffle=True, random_state=42)
+model = BoostingLRWrapper(max_iterations=25)
+
+oriaz@oriaz-Lenovo-V14-IIL:~/Desktop/researc_algo/code/src$ python3 main_with_kfold.py 
+Processing fold 1...
+Trying to add database driver (JDBC): RmiJdbc.RJDriver - Warning, not in CLASSPATH?
+Trying to add database driver (JDBC): jdbc.idbDriver - Warning, not in CLASSPATH?
+Trying to add database driver (JDBC): org.gjt.mm.mysql.Driver - Warning, not in CLASSPATH?
+Trying to add database driver (JDBC): com.mckoi.JDBCDriver - Warning, not in CLASSPATH?
+Trying to add database driver (JDBC): org.hsqldb.jdbcDriver - Warning, not in CLASSPATH?
+#########################
+Fold 1 Kendall's Tau: 24.58%
+Processing fold 2...
+#########################
+Fold 2 Kendall's Tau: 24.36%
+Processing fold 3...
+#########################
+Fold 3 Kendall's Tau: 24.63%
+Processing fold 4...
+#########################
+Fold 4 Kendall's Tau: 24.76%
+Processing fold 5...
+#########################
+Fold 5 Kendall's Tau: 26.14%
+Processing fold 6...
+#########################
+Fold 6 Kendall's Tau: 25.20%
+Processing fold 7...
+#########################
+Fold 7 Kendall's Tau: 24.96%
+Processing fold 8...
+#########################
+Fold 8 Kendall's Tau: 23.61%
+Processing fold 9...
+#########################
+Fold 9 Kendall's Tau: 23.53%
+Processing fold 10...
+#########################
+Fold 10 Kendall's Tau: 24.77%
+Overall Average Kendall's Tau over 10 folds: 24.65%
+oriaz@oriaz-Lenovo-V14-IIL:~/Desktop/researc_algo/code/src$ 
+
+
+//////////////////////////////////////////////////////////////
+kf = KFold(n_splits=5, shuffle=True, random_state=42)
+model = BoostingLRWrapper(max_iterations=25)
+
+oriaz@oriaz-Lenovo-V14-IIL:~/Desktop/researc_algo/code/src$ python3 main_with_kfold.py 
+Processing fold 1...
+Trying to add database driver (JDBC): RmiJdbc.RJDriver - Warning, not in CLASSPATH?
+Trying to add database driver (JDBC): jdbc.idbDriver - Warning, not in CLASSPATH?
+Trying to add database driver (JDBC): org.gjt.mm.mysql.Driver - Warning, not in CLASSPATH?
+Trying to add database driver (JDBC): com.mckoi.JDBCDriver - Warning, not in CLASSPATH?
+Trying to add database driver (JDBC): org.hsqldb.jdbcDriver - Warning, not in CLASSPATH?
+#########################
+Fold 1 Kendall's Tau: 24.51%
+Processing fold 2...
+#########################
+Fold 2 Kendall's Tau: 22.85%
+Processing fold 3...
+#########################
+Fold 3 Kendall's Tau: 23.58%
+Processing fold 4...
+#########################
+Fold 4 Kendall's Tau: 22.28%
+Processing fold 5...
+#########################
+Fold 5 Kendall's Tau: 25.08%
+Overall Average Kendall's Tau over 5 folds: 23.66%
+oriaz@oriaz-Lenovo-V14-IIL:~/Desktop/researc_algo/code/src$ 
+
+
+
+
+/////////////////////////////////////////////////////////////////////
+
+kf = KFold(n_splits=10, shuffle=True, random_state=42)
+model = BoostingLRWrapper(max_iterations=25)
+
+oriaz@oriaz-Lenovo-V14-IIL:~/Desktop/researc_algo/code/src$ python3 main_with_kfold.py 
+Processing fold 1...
+Trying to add database driver (JDBC): RmiJdbc.RJDriver - Warning, not in CLASSPATH?
+Trying to add database driver (JDBC): jdbc.idbDriver - Warning, not in CLASSPATH?
+Trying to add database driver (JDBC): org.gjt.mm.mysql.Driver - Warning, not in CLASSPATH?
+Trying to add database driver (JDBC): com.mckoi.JDBCDriver - Warning, not in CLASSPATH?
+Trying to add database driver (JDBC): org.hsqldb.jdbcDriver - Warning, not in CLASSPATH?
+#########################
+Fold 1 Kendall's Tau: 24.58%
+Processing fold 2...
+#########################
+Fold 2 Kendall's Tau: 24.36%
+Processing fold 3...
+#########################
+Fold 3 Kendall's Tau: 24.63%
+Processing fold 4...
+#########################
+Fold 4 Kendall's Tau: 24.76%
+Processing fold 5...
+#########################
+Fold 5 Kendall's Tau: 26.14%
+Processing fold 6...
+#########################
+Fold 6 Kendall's Tau: 25.20%
+Processing fold 7...
+#########################
+Fold 7 Kendall's Tau: 24.96%
+Processing fold 8...
+#########################
+Fold 8 Kendall's Tau: 23.61%
+Processing fold 9...
+#########################
+Fold 9 Kendall's Tau: 23.53%
+Processing fold 10...
+#########################
+Fold 10 Kendall's Tau: 24.77%
+Overall Average Kendall's Tau over 10 folds: 24.65%
+oriaz@oriaz-Lenovo-V14-IIL:~/Desktop/researc_algo/code/src$ 
